@@ -1,0 +1,27 @@
+---
+osbaseline::classes_contain:
+- archive
+
+osbaseline::classes_include:
+- git
+- logrotate
+- ntp
+- puppet_agent
+- rsync
+- wget
+
+osbaseline::packages:
+- curl
+- bash
+- bzip2
+- htop
+- iftop
+- iperf
+- lftp
+- p7zip
+- screen
+- tcpdump
+- traceroute
+- unzip
+- zip
+...

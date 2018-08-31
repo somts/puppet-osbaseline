@@ -1,0 +1,20 @@
+fixtures:
+  forge_modules:
+    homebrew: 'thekevjames-homebrew'
+    archive: 'puppet-archive'
+    logrotate: 'puppet-logrotate'
+    selinux: 'puppet-selinux'
+    wget: 'puppet-wget'
+    yum: 'puppet-yum'
+    apt: 'puppetlabs-apt'
+    chocolatey: 'puppetlabs-chocolatey'
+    concat: 'puppetlabs-concat'
+    git: 'puppetlabs-git'
+    ntp: 'puppetlabs-ntp'
+    puppet_agent: 'puppetlabs-puppet_agent'
+    rsync: 'puppetlabs-rsync'
+    stdlib: 'puppetlabs-stdlib'
+    epel: 'stahnma-epel'
+    pkgng: 'zleslie-pkgng'
+  symlinks:
+    osbaseline: "#{File.dirname(source_dir)}/puppet-osbaseline"

@@ -1,0 +1,15 @@
+---
+
+osbaseline::classes_include:
+- wget
+
+osbaseline::packages:
+- curl
+- iperf
+- screen
+
+osbaseline::osfamily::osfamily_class: 'osbaseline::osfamily::darwin'
+
+osbaseline::osfamily::darwin::homebrew_user: sys
+osbaseline::osfamily::darwin::minimum_os: '10.11'
+...

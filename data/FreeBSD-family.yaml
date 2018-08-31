@@ -1,0 +1,82 @@
+---
+osbaseline::classes_include:
+- git
+- ntp
+- rsync
+- wget
+
+# Per www.freebsd.org/cgi/man.cgi?query=freebsd-update&sektion=8
+# keep our system up-to-date, once a month. This doesn't install
+# updates, but will email us when update(s) are ready.
+osbaseline::crons:
+  'freebsd-update cron':
+    ensure: present
+    command: /usr/sbin/freebsd-update cron
+    hour: 0
+    minute: 0
+    monthday: 1
+
+# Puppet tends to expect /home, so we ensure a symlink
+osbaseline::files:
+  '/usr/home':
+    ensure: directory
+    owner: root
+    group: wheel
+    before: 'File[/home]'
+    require:
+  '/home':
+    ensure: link
+    owner: root
+    group: wheel
+    target: usr/home
+    before: 'Class[osbaseline::osfamily::freebsd]'
+    require:
+  # Link /usr/local/bin/bash to /bin/bash for the sake of scripts.
+  # Too many scripts use the absolute path in the shebang.
+  '/bin/bash':
+    ensure: link
+    target: /usr/local/bin/bash
+    require: 'Package[shells/bash]'
+
+osbaseline::mounts:
+  # The GNU bash requires fdescfs (file-descriptor file system)
+  # mounted on /dev/fd. For details, see
+  # https://www.cyberciti.biz/faq/freebsd-bash-installation/
+  # NOTE: This requires a reboot to actually work
+  '/dev/fd':
+    ensure: mounted
+    device: fdesc
+    dump: '0'
+    fstype: fdescfs
+    options: rw
+    pass: '0'
+    target: /etc/fstab
+    require: 'Package[shells/bash]'
+
+osbaseline::packages:
+- shells/bash
+- shells/bash-completion
+- curl
+- iperf
+- screen
+- bzip2
+- htop
+- iftop
+- lftp
+- p7zip
+- tcpdump
+- traceroute
+- unzip
+- zip
+
+osbaseline::osfamily::osfamily_class: 'osbaseline::osfamily::freebsd'
+
+osbaseline::osfamily::freebsd::minimum_os: '11'
+
+osbaseline::virtual::vmtools_pkg_name: open-vm-tools-nox11
+osbaseline::virtual::vmtools_svc_name: vmwware-guestd
+
+# You probably want this in your main Hiera conf:
+#pkgng::repos:
+#  pkgng.freebsd.org: {}
+...

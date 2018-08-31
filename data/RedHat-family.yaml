@@ -1,0 +1,10 @@
+---
+osbaseline::classes_contain: [selinux]
+osbaseline::classes_include: []
+
+osbaseline::osfamily::osfamily_class: 'osbaseline::osfamily::redhat'
+
+osbaseline::osfamily::redhat::minimum_os: '7'
+
+osbaseline::virtual::vmtools_svc_name: vmtoolsd
+...

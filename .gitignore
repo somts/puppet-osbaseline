@@ -1,0 +1,9 @@
+.vagrant
+Gemfile.lock
+coverage
+hieradata/nodes/example-puppet-master.yaml
+results
+spec/fixtures/manifests
+keys/
+*.swp
+fixtures/

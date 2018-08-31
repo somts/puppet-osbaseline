@@ -1,0 +1,34 @@
+{
+  "name": "puppet-osbaseline",
+  "version": "0.1.0",
+  "author": "somts",
+  "summary": "Manage Puppet osbaseline",
+  "license": "BSD 2-Clause License",
+  "source": "https://github.com/somts/puppet-osbaseline",
+  "project_page": "https://github.com/somts/puppet-osbaseline",
+  "issues_url": "https://somts.ucsd.edu/support",
+  "dependencies": [
+    {"name":"puppet-archive"},
+    {"name":"puppet-logrotate"},
+    {"name":"puppet-selinux"},
+    {"name":"puppet-wget"},
+    {"name":"puppetlabs-chocolately"},
+    {"name":"puppetlabs-concat"},
+    {"name":"puppetlabs-git"},
+    {"name":"puppetlabs-ntp"},
+    {"name":"puppetlabs-puppet_agent"},
+    {"name":"puppetlabs-rsync"},
+    {"name":"puppetlabs-stdlib"},
+    {"name":"stahnma-epel"},
+    {"name":"thekevjames-homebrew"},
+    {"name":"zleslie-pkgng"}
+  ],
+  "data_provider": null,
+  "operatingsystem_support": [
+    { "operatingsystem": "CentOS" , "operatingsystemrelease": [ "7"     ] },
+    { "operatingsystem": "Darwin" , "operatingsystemrelease": [ "16"    ] },
+    { "operatingsystem": "FreeBSD", "operatingsystemrelease": [ "11"    ] },
+    { "operatingsystem": "Ubuntu" , "operatingsystemrelease": [ "16.04" ] },
+    { "operatingsystem": "windows", "operatingsystemrelease": [ "10"    ] }
+  ]
+}
