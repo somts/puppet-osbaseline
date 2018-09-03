@@ -25,10 +25,10 @@
   ],
   "data_provider": null,
   "operatingsystem_support": [
-    { "operatingsystem": "CentOS" , "operatingsystemrelease": [ "7"     ] },
-    { "operatingsystem": "Darwin" , "operatingsystemrelease": [ "16"    ] },
-    { "operatingsystem": "FreeBSD", "operatingsystemrelease": [ "11"    ] },
-    { "operatingsystem": "Ubuntu" , "operatingsystemrelease": [ "16.04" ] },
-    { "operatingsystem": "windows", "operatingsystemrelease": [ "10"    ] }
+    { "operatingsystem": "CentOS" , "operatingsystemrelease": [ "7"          ] },
+    { "operatingsystem": "Darwin" , "operatingsystemrelease": [ "16"         ] },
+    { "operatingsystem": "FreeBSD", "operatingsystemrelease": [ "11"         ] },
+    { "operatingsystem": "Ubuntu" , "operatingsystemrelease": [ "16.04"      ] },
+    { "operatingsystem": "windows", "operatingsystemrelease": [ "10", "2016" ] }
   ]
 }

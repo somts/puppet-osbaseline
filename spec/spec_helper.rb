@@ -19,7 +19,10 @@ add_custom_fact :virtual, nil
 add_custom_fact :has_compiler, nil, confine: 'darwin-16-x86_64'
 
 # Add customized Windows facts
-add_custom_fact :archive_windir, 'c:/tmp', confine: 'windows-10-x64'
+add_custom_fact :archive_windir, 'c:/tmp', confine: [
+  'windows-10-x64',
+  'windows-2016-x64'
+]
 
 RSpec.configure do |config|
   # normal rspec-puppet configuration
