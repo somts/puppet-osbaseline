@@ -1,9 +1,9 @@
 ---
 osbaseline::classes_include:
-- git
-- ntp
-- rsync
-- wget
+  - git
+  - ntp
+  - rsync
+  - wget
 
 # Per www.freebsd.org/cgi/man.cgi?query=freebsd-update&sektion=8
 # keep our system up-to-date, once a month. This doesn't install
@@ -54,20 +54,20 @@ osbaseline::mounts:
     require: 'Package[shells/bash]'
 
 osbaseline::packages:
-- shells/bash
-- shells/bash-completion
-- curl
-- iperf
-- screen
-- bzip2
-- htop
-- iftop
-- lftp
-- p7zip
-- tcpdump
-- traceroute
-- unzip
-- zip
+  - shells/bash
+  - shells/bash-completion
+  - curl
+  - iperf
+  - screen
+  - bzip2
+  - htop
+  - iftop
+  - lftp
+  - p7zip
+  - tcpdump
+  - traceroute
+  - unzip
+  - zip
 
 osbaseline::osfamily::osfamily_class: 'osbaseline::osfamily::freebsd'
 
@@ -77,6 +77,6 @@ osbaseline::virtual::vmtools_pkg_name: open-vm-tools-nox11
 osbaseline::virtual::vmtools_svc_name: vmwware-guestd
 
 # You probably want this in your main Hiera conf:
-#pkgng::repos:
-#  pkgng.freebsd.org: {}
+# pkgng::repos:
+#   pkgng.freebsd.org: {}
 ...

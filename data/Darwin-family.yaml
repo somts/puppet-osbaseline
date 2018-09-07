@@ -1,12 +1,12 @@
 ---
 
 osbaseline::classes_include:
-- wget
+  - wget
 
 osbaseline::packages:
-- curl
-- iperf
-- screen
+  - curl
+  - iperf
+  - screen
 
 osbaseline::osfamily::osfamily_class: 'osbaseline::osfamily::darwin'
 

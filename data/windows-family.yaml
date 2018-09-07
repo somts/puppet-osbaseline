@@ -1,10 +1,10 @@
 ---
 osbaseline::classes_contain:
-- archive
+  - archive
 
 osbaseline::classes_include:
-- puppet_agent
-# - chocolately
+  - puppet_agent
+  # - chocolately
 
 osbaseline::osfamily::osfamily_class: 'osbaseline::osfamily::windows'
 osbaseline::osfamily::windows::minimum_os: '10'
