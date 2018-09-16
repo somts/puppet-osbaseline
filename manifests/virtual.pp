@@ -8,13 +8,31 @@ class osbaseline::virtual(
 
   ## MANAGED RESOURCES
   case $::virtual {
-    'vmware': {
-      package { $vmtools_pkg_name : }
-      ~> service { 'vmtoolsd':
+    'hyperv': {
+      #NOOP -- needs work
+
+    } 'kvm': {
+      #NOOP -- needs work
+
+    } 'virtualbox': {
+      #NOOP -- needs work and a repo
+      # See http://download.virtualbox.org/virtualbox/rpm/el/
+
+    } 'vmware': {
+      if undef != $vmtools_pkg_name {
+        package { $vmtools_pkg_name :
+          notify => Service['vmtoolsd'],
+        }
+      }
+      service { 'vmtoolsd':
         ensure => true,
         enable => true,
         name   => $vmtools_svc_name,
       }
+
+    } 'xenu': {
+      #NOOP -- needs work
+
     } default: {
       #NOOP
     }

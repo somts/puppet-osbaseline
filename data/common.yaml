@@ -2,19 +2,7 @@
 lookup_options:
   osbaseline::classes_contain:
     merge: unique
-  osbaseline::classes_contain_require:
-    merge: unique
   osbaseline::classes_include:
-    merge: unique
-  osbaseline::classes_include_require:
-    merge: unique
-  osbaseline::kernel::classes_contain:
-    merge: unique
-  osbaseline::kernel::classes_include:
-    merge: unique
-  osbaseline::osfamily::classes_contain:
-    merge: unique
-  osbaseline::osfamily::classes_include:
     merge: unique
 
 osbaseline::crons: {}
