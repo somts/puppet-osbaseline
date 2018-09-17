@@ -8,9 +8,10 @@ lookup_options:
 osbaseline::crons: {}
 osbaseline::files: {}
 osbaseline::mounts: {}
+osbaseline::git_configs: {}
 osbaseline::classes_contain: []
 osbaseline::classes_include: []
-osbaseline::classes_exclusions: []
+osbaseline::classes_exclude: []
 osbaseline::packages: []
 
 osbaseline::virtual::vmtools_pkg_name: open-vm-tools

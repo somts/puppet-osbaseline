@@ -51,7 +51,7 @@ describe 'osbaseline', type: :class do
 
     context 'with puppet_agent excluded' do
       let :params do
-        { classes_exclusions: ['puppet_agent'] }
+        { classes_exclude: ['puppet_agent'] }
       end
       it do should_not contain_class('puppet_agent') end
     end
@@ -67,11 +67,34 @@ describe 'osbaseline', type: :class do
     it do should contain_class('ntp') end
     it do should contain_class('rsync') end
 
+    context 'with git_configs set' do
+      let :params do
+        {
+          git_configs: {
+            'http.proxy'  => { 'value' => 'http://proxy.example.com:3128/' },
+            'https.proxy' => { 'value' => 'http://proxy.example.com:3128/' }
+          }
+        }
+      end
+      it do
+        should contain_git__config('http.proxy').with(
+          'value' => 'http://proxy.example.com:3128/', 'scope' => 'system'
+        ).that_requires('Class[osbaseline::osfamily]')
+      end
+      it do
+        should contain_git__config('https.proxy').with(
+          'value' => 'http://proxy.example.com:3128/', 'scope' => 'system'
+        ).that_requires('Class[osbaseline::osfamily]')
+      end
+    end
+
     context 'with rsync excluded' do
       let :params do
-        { classes_exclusions: ['rsync'] }
+        { classes_exclude: ['rsync'] }
       end
       it do should_not contain_class('rsync') end
+      it do should contain_class('git') end
+      it do should contain_class('ntp') end
     end
   end
 

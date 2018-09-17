@@ -30,5 +30,5 @@
   "project_page": "https://github.com/somts/puppet-osbaseline",
   "source": "https://github.com/somts/puppet-osbaseline",
   "summary": "Manage Puppet osbaseline",
-  "version": "0.1.2"
+  "version": "0.1.3"
 }
