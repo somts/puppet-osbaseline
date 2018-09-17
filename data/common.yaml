@@ -10,6 +10,7 @@ osbaseline::files: {}
 osbaseline::mounts: {}
 osbaseline::classes_contain: []
 osbaseline::classes_include: []
+osbaseline::classes_exclusions: []
 osbaseline::packages: []
 
 osbaseline::virtual::vmtools_pkg_name: open-vm-tools

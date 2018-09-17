@@ -1,7 +1,6 @@
 require 'spec_helper'
 # rubocop:disable Metrics/BlockLength
 describe 'osbaseline', type: :class do
-
   shared_context 'Kernel Linux' do
     it_behaves_like 'Unixy FOSS'
 
@@ -48,8 +47,14 @@ describe 'osbaseline', type: :class do
   end
 
   shared_context 'OS family Windows' do
-
     it do should contain_class('puppet_agent') end
+
+    context 'with puppet_agent excluded' do
+      let :params do
+        { classes_exclusions: ['puppet_agent'] }
+      end
+      it do should_not contain_class('puppet_agent') end
+    end
   end
 
   shared_context 'Unixy' do
@@ -61,6 +66,13 @@ describe 'osbaseline', type: :class do
     it do should contain_class('git') end
     it do should contain_class('ntp') end
     it do should contain_class('rsync') end
+
+    context 'with rsync excluded' do
+      let :params do
+        { classes_exclusions: ['rsync'] }
+      end
+      it do should_not contain_class('rsync') end
+    end
   end
 
   on_supported_os.each do |os, facts|
