@@ -29,7 +29,6 @@ osbaseline::files:
     owner: root
     group: wheel
     target: usr/home
-    before: 'Class[osbaseline::osfamily]'
     require:
   # Link /usr/local/bin/bash to /bin/bash for the sake of scripts.
   # Too many scripts use the absolute path in the shebang.
