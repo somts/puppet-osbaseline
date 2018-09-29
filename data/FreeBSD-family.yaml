@@ -51,7 +51,8 @@ osbaseline::mounts:
     options: rw
     pass: '0'
     target: /etc/fstab
-    require: 'Package[shells/bash]'
+    # Not yet sure why this does not work
+    #require: 'Package[shells/bash]'
 
 osbaseline::packages:
   - shells/bash
