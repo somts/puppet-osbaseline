@@ -35,7 +35,8 @@ osbaseline::files:
   '/bin/bash':
     ensure: link
     target: /usr/local/bin/bash
-    require: 'Package[shells/bash]'
+    # Not yet sure why this does not work
+    #require: 'Package[shells/bash]'
 
 osbaseline::mounts:
   # The GNU bash requires fdescfs (file-descriptor file system)
