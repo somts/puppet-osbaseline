@@ -4,6 +4,9 @@ class osbaseline(
   Hash $files,
   Hash $mounts,
   Hash $git_configs,
+  Hash $accounts_users,
+  Hash $users,
+  Hash $ssh_authorized_keys,
   Array $classes_contain,
   Array $classes_include,
   Array $classes_exclude,
@@ -39,6 +42,10 @@ class osbaseline(
   create_resources('cron', $crons,  { require => Class['osbaseline::osfamily']})
   create_resources('file', $files,  { require => Class['osbaseline::osfamily']})
   create_resources('mount', $mounts,{ require => Class['osbaseline::osfamily']})
+
+  # We may need to manage users (eg root) ahead of anything else
+  Class['osbaseline::users'] -> Class['osbaseline::osfamily']
+  contain osbaseline::users
 
   # We may want to manage git variables if we called git
   if defined(Class['git']) {
