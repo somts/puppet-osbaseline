@@ -1,9 +1,9 @@
 # We may need to manage users (eg root) ahead of anything else
-class osbaseline::users(
+class osbaseline::accounts(
   Hash $accounts_users,
-  Hash $users,
   Hash $groups,
   Hash $ssh_authorized_keys,
+  Hash $users,
 ) {
   create_resources('user',$users)
   create_resources('group',$groups)
