@@ -75,7 +75,7 @@ osbaseline::osfamily::osfamily_class: 'osbaseline::osfamily::freebsd'
 osbaseline::osfamily::freebsd::minimum_os: '11'
 
 osbaseline::virtual::vmtools_pkg_name: open-vm-tools-nox11
-osbaseline::virtual::vmtools_svc_name: vmwware-guestd
+osbaseline::virtual::vmtools_svc_name: vmware-guestd
 
 # You probably want this in your main Hiera conf:
 # pkgng::repos:
