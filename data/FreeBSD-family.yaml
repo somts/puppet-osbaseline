@@ -64,9 +64,9 @@ osbaseline::packages:
   - htop
   - iftop
   - lftp
+  - ntraceroute
   - p7zip
   - tcpdump
-  - traceroute
   - unzip
   - zip
 
