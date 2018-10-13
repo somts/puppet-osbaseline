@@ -4,6 +4,22 @@ lookup_options:
     merge: unique
   osbaseline::classes_include:
     merge: unique
+  osbaseline::accounts::accounts_users:
+    merge: hash
+    strategy: deep
+    merge_hash_arrays: true
+  osbaseline::accounts::groups:
+    merge: hash
+    strategy: deep
+    merge_hash_arrays: true
+  osbaseline::accounts::ssh_authorized_keys:
+    merge: hash
+    strategy: deep
+    merge_hash_arrays: true
+  osbaseline::accounts::users:
+    merge: hash
+    strategy: deep
+    merge_hash_arrays: true
 
 osbaseline::crons: {}
 osbaseline::files: {}
