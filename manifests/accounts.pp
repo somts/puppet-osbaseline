@@ -11,7 +11,7 @@ class osbaseline::accounts(
 
   # Accounts only works on Linux. For details, see
   # https://forge.puppet.com/puppetlabs/accounts
-  if $::kernel == 'Linux' {
+  if $::kernel in ['FreeBSD', 'Linux'] {
     create_resources('accounts::user',$accounts_users)
   }
 }
