@@ -1,25 +1,15 @@
 ---
 lookup_options:
-  osbaseline::classes_contain:
-    merge: unique
-  osbaseline::classes_include:
-    merge: unique
+  osbaseline::classes_contain: {merge: unique}
+  osbaseline::classes_include: {merge: unique}
   osbaseline::accounts::accounts_users:
-    merge: hash
-    strategy: deep
-    merge_hash_arrays: true
+    merge: {strategy: deep, merge_hash_arrays: true}
   osbaseline::accounts::groups:
-    merge: hash
-    strategy: deep
-    merge_hash_arrays: true
+    merge: {strategy: deep, merge_hash_arrays: true}
   osbaseline::accounts::ssh_authorized_keys:
-    merge: hash
-    strategy: deep
-    merge_hash_arrays: true
+    merge: {strategy: deep, merge_hash_arrays: true}
   osbaseline::accounts::users:
-    merge: hash
-    strategy: deep
-    merge_hash_arrays: true
+    merge: {strategy: deep, merge_hash_arrays: true}
 
 osbaseline::crons: {}
 osbaseline::files: {}
