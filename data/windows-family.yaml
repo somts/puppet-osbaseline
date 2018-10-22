@@ -8,4 +8,7 @@ osbaseline::classes_include:
 
 osbaseline::osfamily::osfamily_class: 'osbaseline::osfamily::windows'
 osbaseline::osfamily::windows::minimum_os: '10'
+
+osbaseline::virtual::vmtools_pkg_name:
+osbaseline::virtual::vmtools_svc_name: VMTools
 ...
