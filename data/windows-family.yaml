@@ -18,6 +18,7 @@ osbaseline::packages:
   - procexp
   - tartool
   - teraterm
+  - wget
   - winscp
   - wireshark
 
