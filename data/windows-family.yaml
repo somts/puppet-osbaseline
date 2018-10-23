@@ -16,10 +16,12 @@ osbaseline::packages:
   - netstat-agent
   - notepadplusplus
   - procexp
+  - putty
   - tartool
   - teraterm
   - wget
   - winscp
+  - winsshterm
   - wireshark
 
 osbaseline::osfamily::windows::minimum_os: '10'
