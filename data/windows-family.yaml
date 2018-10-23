@@ -9,7 +9,6 @@ osbaseline::classes_include:
 osbaseline::osfamily::osfamily_class: 'osbaseline::osfamily::windows'
 
 osbaseline::packages:
-  - 7zip
   - curl
   - filezilla
   - iperf3
