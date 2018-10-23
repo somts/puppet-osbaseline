@@ -7,6 +7,21 @@ osbaseline::classes_include:
   - chocolatey
 
 osbaseline::osfamily::osfamily_class: 'osbaseline::osfamily::windows'
+
+osbaseline::packages:
+  - 7zip
+  - curl
+  - filezilla
+  - iperf3
+  - lftp
+  - netstat-agent
+  - notepadplusplus
+  - proxexp
+  - tartool
+  - teraterm
+  - winscp
+  - wireshark
+
 osbaseline::osfamily::windows::minimum_os: '10'
 
 osbaseline::virtual::vmtools_pkg_name:
