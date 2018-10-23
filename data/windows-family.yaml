@@ -15,7 +15,7 @@ osbaseline::packages:
   - lftp
   - netstat-agent
   - notepadplusplus
-  - proxexp
+  - procexp
   - tartool
   - teraterm
   - winscp
