@@ -21,10 +21,12 @@ osbaseline::packages:
   - teraterm
   - wget
   - winscp
-  - winsshterm
   - wireshark
 
 osbaseline::osfamily::windows::minimum_os: '10'
+osbaseline::osfamily::windows::registry_keys: {}
+osbaseline::osfamily::windows::registry_values: {}
+osbaseline::osfamily::windows::registryvalues: {}
 
 osbaseline::virtual::vmtools_pkg_name:
 osbaseline::virtual::vmtools_svc_name: VMTools

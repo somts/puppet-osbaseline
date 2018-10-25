@@ -10,6 +10,9 @@ lookup_options:
     merge: {strategy: deep, merge_hash_arrays: true}
   osbaseline::accounts::users:
     merge: {strategy: deep, merge_hash_arrays: true}
+  osbaseline::osfamily::windows::registry_keys: {strategy: deep}
+  osbaseline::osfamily::windows::registry_values: {strategy: deep}
+  osbaseline::osfamily::windows::registryvalues: {strategy: deep}
 
 osbaseline::crons: {}
 osbaseline::files: {}

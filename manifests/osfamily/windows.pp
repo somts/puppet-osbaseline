@@ -2,6 +2,9 @@
 class osbaseline::osfamily::windows(
   Array $packages    = [],
   String $minimum_os = '10',
+  Hash $registry_keys,
+  Hash $registry_values,
+  Hash $registryvalues,
 ) {
   ## VALDIATION
   assert_private()
@@ -13,6 +16,8 @@ class osbaseline::osfamily::windows(
   }
 
   ## MANAGED RESOURCES
-  #include cygwin
-  #include chocolatey
+  create_resources('registry_key', $registry_keys)
+  create_resources('registry_value', $registry_values)
+  create_resources('registry::value', $registryvalues)
+  include chocolatey
 }
