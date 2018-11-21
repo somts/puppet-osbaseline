@@ -16,8 +16,14 @@ osbaseline::crons:
     minute: 0
     monthday: 1
 
-# Puppet tends to expect /home, so we ensure a symlink
 osbaseline::files:
+  # optional packages are often in /opt, but FreeBSD does not default do that.
+  '/opt':
+    ensure: directory
+    owner: root
+    group: wheel
+    require:
+  # Puppet tends to expect /home, so we ensure a symlink
   '/usr/home':
     ensure: directory
     owner: root
