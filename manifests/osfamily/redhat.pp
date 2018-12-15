@@ -14,7 +14,7 @@ class osbaseline::osfamily::redhat(
   ## MANAGED RESOURCES
 
   # Manage this OS family's package manager(s)
-  contain epel
+  include epel
   contain yum
 
   # we need this installed for IUS, but epel module does not install.
