@@ -16,5 +16,7 @@ fixtures:
     stdlib: 'puppetlabs-stdlib'
     epel: 'stahnma-epel'
     pkgng: 'zleslie-pkgng'
+    powershell: 'puppetlabs-powershell'
+    registry: 'puppetlabs-registry'
   symlinks:
     osbaseline: "#{File.dirname(source_dir)}/puppet-osbaseline"

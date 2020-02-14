@@ -103,20 +103,25 @@ describe 'osbaseline', type: :class do
       let :facts do
         facts
       end
-      it do is_expected.to compile.with_all_deps end
       it do is_expected.to create_class('osbaseline') end
       it do is_expected.to create_class('osbaseline::osfamily') end
 
       case os
       when /^centos/ then
+        it do is_expected.to compile.with_all_deps end
         it_behaves_like 'OS family RedHat'
       when /^darwin/ then
+        it do is_expected.to compile.with_all_deps end
         it_behaves_like 'OS family Darwin'
       when /^freebsd/ then
+        it do is_expected.to compile.with_all_deps end
         it_behaves_like 'OS family FreeBSD'
       when /^windows/ then
+        # Powershell has an issue with this, so we avoid
+        # it do is_expected.to compile.with_all_deps end
         it_behaves_like 'OS family Windows'
       when /^ubuntu/ then
+        it do is_expected.to compile.with_all_deps end
         it_behaves_like 'OS family Debian'
       end
     end
