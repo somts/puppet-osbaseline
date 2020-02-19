@@ -98,10 +98,10 @@ describe 'osbaseline', type: :class do
     end
   end
 
-  on_supported_os.each do |os, facts|
+  on_supported_os.each do |os, os_facts|
     context "on #{os}" do
       let :facts do
-        facts
+        os_facts
       end
       it do is_expected.to create_class('osbaseline') end
       it do is_expected.to create_class('osbaseline::osfamily') end
