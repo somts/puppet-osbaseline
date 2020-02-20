@@ -8,7 +8,6 @@ osbaseline::classes_include:
   - ntp
   - puppet_agent
   - rsync
-  - wget
 
 osbaseline::packages:
   - curl
@@ -23,5 +22,6 @@ osbaseline::packages:
   - tcpdump
   - traceroute
   - unzip
+  - wget
   - zip
 ...
