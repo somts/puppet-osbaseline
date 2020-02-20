@@ -3,7 +3,6 @@ osbaseline::classes_include:
   - git
   - ntp
   - rsync
-  - wget
 
 # Per www.freebsd.org/cgi/man.cgi?query=freebsd-update&sektion=8
 # keep our system up-to-date, once a month. This doesn't install
@@ -74,6 +73,7 @@ osbaseline::packages:
   - p7zip
   - tcpdump
   - unzip
+  - wget
   - zip
 
 osbaseline::osfamily::osfamily_class: 'osbaseline::osfamily::freebsd'
