@@ -58,7 +58,7 @@ describe 'osbaseline', type: :class do
   end
 
   shared_context 'Unixy' do
-    it do should contain_class('wget') end
+    it do should_not contain_class('wget') end
   end
 
   shared_context 'Unixy FOSS' do
