@@ -15,18 +15,15 @@ add_custom_fact :puppet_server, 'puppet.example.com'
 add_custom_fact :puppetversion, '5.5.10'
 add_custom_fact :virtual, nil
 
+macv = [ 'darwin-16-x86_64' ]
+winv = [ 'windows-10-x86_64', 'windows-2016-x86_64', 'windows-2019-x86_64' ]
+
 # Add customized Darwin facts
-add_custom_fact :has_compiler, nil, confine: 'darwin-16-x86_64'
+add_custom_fact :has_compiler, nil, confine: macv
 
 # Add customized Windows facts
-add_custom_fact :archive_windir, 'c:/tmp', confine: [
-  'windows-10-x86_64',
-  'windows-2016-x86_64'
-]
-add_custom_fact :choco_install_path, 'c:/programdata/chocolatey', confine: [
-  'windows-10-x86_64',
-  'windows-2016-x86_64'
-]
+add_custom_fact :archive_windir, 'c:/tmp', confine: winv
+add_custom_fact :choco_install_path, 'c:/programdata/chocolatey', confine: winv
 
 RSpec.configure do |config|
   # normal rspec-puppet configuration

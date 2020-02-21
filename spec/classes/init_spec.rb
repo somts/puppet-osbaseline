@@ -98,31 +98,47 @@ describe 'osbaseline', type: :class do
     end
   end
 
-  on_supported_os.each do |os, os_facts|
+  on_supported_os.sort.each do |os, os_facts|
     context "on #{os}" do
       let :facts do
-        os_facts
+        os_facts.merge(is_virtual: false)
       end
       it do is_expected.to create_class('osbaseline') end
       it do is_expected.to create_class('osbaseline::osfamily') end
+      it do should_not contain_class('osbaseline::virtual') end
+      it do should_not contain_class('openvmtools') end
 
-      case os
-      when /^centos/ then
+      context 'with is_virtual = true' do
+        let :facts do
+          os_facts.merge(is_virtual: true)
+        end
+        case os_facts[:kernel]
+        when 'FreeBSD', 'Linux'
+          it do is_expected.to create_class('osbaseline::virtual') end
+          it do should contain_class('openvmtools') end
+        else
+          it do is_expected.to create_class('osbaseline::virtual') end
+          it do should_not contain_class('openvmtools') end
+        end
+      end
+
+      case os_facts[:osfamily]
+      when 'CentOS', 'RedHat'
         it do is_expected.to compile.with_all_deps end
         it_behaves_like 'OS family RedHat'
-      when /^darwin/ then
+      when 'Darwin'
         it do is_expected.to compile.with_all_deps end
         it_behaves_like 'OS family Darwin'
-      when /^freebsd/ then
-        it do is_expected.to compile.with_all_deps end
-        it_behaves_like 'OS family FreeBSD'
-      when /^windows/ then
-        # Powershell has an issue with this, so we avoid
-        # it do is_expected.to compile.with_all_deps end
-        it_behaves_like 'OS family Windows'
-      when /^ubuntu/ then
+      when 'Debian' then
         it do is_expected.to compile.with_all_deps end
         it_behaves_like 'OS family Debian'
+      when 'FreeBSD'
+        it do is_expected.to compile.with_all_deps end
+        it_behaves_like 'OS family FreeBSD'
+      when 'windows' then
+        # Powershell provider has issues with this, so we avoid for now
+        # it do is_expected.to compile.with_all_deps end
+        it_behaves_like 'OS family Windows'
       end
     end
   end

@@ -2,6 +2,7 @@ fixtures:
   forge_modules:
     homebrew: 'thekevjames-homebrew'
     archive: 'puppet-archive'
+    openvmtools: 'puppet-openvmtools'
     logrotate: 'puppet-logrotate'
     selinux: 'puppet-selinux'
     wget: 'puppet-wget'
