@@ -101,23 +101,19 @@ describe 'osbaseline', type: :class do
   on_supported_os.sort.each do |os, os_facts|
     context "on #{os}" do
       let :facts do
-        os_facts.merge(is_virtual: false)
+        os_facts.merge(virtual: 'physical')
       end
       it do is_expected.to create_class('osbaseline') end
       it do is_expected.to create_class('osbaseline::osfamily') end
-      it do should_not contain_class('osbaseline::virtual') end
-      it do should_not contain_class('openvmtools') end
 
       context 'with is_virtual = true' do
         let :facts do
-          os_facts.merge(is_virtual: true)
+          os_facts.merge(virtual: 'vmware')
         end
         case os_facts[:kernel]
         when 'FreeBSD', 'Linux'
-          it do is_expected.to create_class('osbaseline::virtual') end
-          it do should contain_class('openvmtools') end
+          it do is_expected.to create_class('openvmtools') end
         else
-          it do is_expected.to create_class('osbaseline::virtual') end
           it do should_not contain_class('openvmtools') end
         end
       end

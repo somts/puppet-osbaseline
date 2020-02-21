@@ -2,6 +2,7 @@
 osbaseline::classes_include:
   - git
   - ntp
+  - openvmtools
   - rsync
 
 # Per www.freebsd.org/cgi/man.cgi?query=freebsd-update&sektion=8

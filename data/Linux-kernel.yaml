@@ -1,8 +1,9 @@
 ---
 osbaseline::classes_contain:
-  - archive
+  - openvmtools
 
 osbaseline::classes_include:
+  - archive
   - git
   - logrotate
   - ntp
