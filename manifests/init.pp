@@ -1,6 +1,7 @@
 # This module sets up supported operating systems to a baseline.
 class osbaseline(
   Hash $crons,
+  Hash $execs,
   Hash $files,
   Hash $mounts,
   Hash $git_configs,
@@ -37,6 +38,7 @@ class osbaseline(
 
   # Conditionally include resources, but make sure our baseline has run
   create_resources('cron', $crons,  { require => Class['osbaseline::osfamily']})
+  create_resources('exec', $execs,  { require => Class['osbaseline::osfamily']})
   create_resources('file', $files,  { require => Class['osbaseline::osfamily']})
   create_resources('mount', $mounts,{ require => Class['osbaseline::osfamily']})
 
