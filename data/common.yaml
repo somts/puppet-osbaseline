@@ -23,6 +23,7 @@ osbaseline::classes_contain: []
 osbaseline::classes_include: []
 osbaseline::classes_exclude: []
 osbaseline::packages: []
+osbaseline::packages_removed: []
 
 osbaseline::accounts::accounts_users: {}
 osbaseline::accounts::groups: {}

@@ -9,6 +9,7 @@ class osbaseline(
   Array $classes_include,
   Array $classes_exclude,
   Array $packages,
+  Array $packages_removed,
 ) {
   ## CLASS VARIABLES
 
@@ -41,6 +42,19 @@ class osbaseline(
   create_resources('exec', $execs,  { require => Class['osbaseline::osfamily']})
   create_resources('file', $files,  { require => Class['osbaseline::osfamily']})
   create_resources('mount', $mounts,{ require => Class['osbaseline::osfamily']})
+
+  # We need the ability to remove packages, and this should be done
+  # before any specific osfamily normalization and we intentionally
+  # want to avoid NOT using the package {} resource, so that resource
+  # conflicts crop up when needed.  Doing that also
+  # ensures that we remove packages before installing $packages,
+  # allowing us to upgrade packages eg git-216 -> git-224.
+  $packages_removed.each |String $p| {
+    package { $p :
+      ensure => 'absent',
+      before => Class['osbaseline::osfamily'],
+    }
+  }
 
   # We may need to manage users (eg root) ahead of anything else
   Class['osbaseline::accounts'] -> Class['osbaseline::osfamily']

@@ -1,6 +1,7 @@
 require 'spec_helper'
 # rubocop:disable Metrics/BlockLength
 describe 'osbaseline', type: :class do
+
   shared_context 'Kernel Linux' do
     it_behaves_like 'Unixy FOSS'
 
@@ -59,6 +60,48 @@ describe 'osbaseline', type: :class do
 
   shared_context 'Unixy' do
     it do should_not contain_class('wget') end
+
+    context 'with packages set' do
+      let :params do
+        { packages: %w[foo bar baz] }
+      end
+      it do
+        should contain_package('foo').that_requires(
+          'Class[osbaseline::osfamily]'
+        )
+      end
+      it do
+        should contain_package('bar').that_requires(
+          'Class[osbaseline::osfamily]'
+        )
+      end
+      it do
+        should contain_package('baz').that_requires(
+          'Class[osbaseline::osfamily]'
+        )
+      end
+    end
+
+    context 'with packages and packages_removed set' do
+      let :params do
+        { packages: %w[foo], packages_removed: %w[bar baz] }
+      end
+      it do
+        should contain_package('foo').that_requires(
+          'Class[osbaseline::osfamily]'
+        )
+      end
+      it do
+        should contain_package('bar').with_ensure('absent').that_comes_before(
+          'Class[osbaseline::osfamily]'
+        )
+      end
+      it do
+        should contain_package('baz').with_ensure('absent').that_comes_before(
+          'Class[osbaseline::osfamily]'
+        )
+      end
+    end
   end
 
   shared_context 'Unixy FOSS' do
@@ -125,13 +168,13 @@ describe 'osbaseline', type: :class do
       when 'Darwin'
         it do is_expected.to compile.with_all_deps end
         it_behaves_like 'OS family Darwin'
-      when 'Debian' then
+      when 'Debian'
         it do is_expected.to compile.with_all_deps end
         it_behaves_like 'OS family Debian'
       when 'FreeBSD'
         it do is_expected.to compile.with_all_deps end
         it_behaves_like 'OS family FreeBSD'
-      when 'windows' then
+      when 'windows'
         # Powershell provider has issues with this, so we avoid for now
         # it do is_expected.to compile.with_all_deps end
         it_behaves_like 'OS family Windows'
