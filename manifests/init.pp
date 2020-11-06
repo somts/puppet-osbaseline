@@ -49,10 +49,12 @@ class osbaseline(
   # conflicts crop up when needed.  Doing that also
   # ensures that we remove packages before installing $packages,
   # allowing us to upgrade packages eg git-216 -> git-224.
-  $packages_removed.each |String $p| {
-    package { $p :
-      ensure => 'absent',
-      before => Class['osbaseline::osfamily'],
+  if !empty($packages_removed) {
+    $packages_removed.each |String $p| {
+      package { $p :
+        ensure => 'absent',
+        before => Class['osbaseline::osfamily'],
+      }
     }
   }
 
