@@ -23,6 +23,7 @@ group :puppet do
   gem 'puppet', puppetversion
   gem 'puppetlabs_spec_helper', '>= 1.0.0'
   gem 'puppet-syntax', require: false
+  gem 'rake', '>= 12.3.3' # https://github.com/advisories/GHSA-jppv-gw3r-w3q8
   gem 'rspec-puppet', '>= 2.6.11'
   gem 'rspec-puppet-facts'
   gem 'semantic_puppet'
@@ -42,6 +43,9 @@ group :lint do
   gem 'puppet-lint-undef_in_function-check'
   gem 'puppet-lint-unquoted_string-check'
   gem 'puppet-lint-variable_contains_upcase'
+  gem 'rubocop', rubocopversion
+  gem 'rubocop-performance'
+  gem 'rubocop-rspec'
 end
 
 gem 'ci_reporter_rspec'
@@ -52,14 +56,3 @@ gem 'metadata-json-lint'
 gem 'onceover' # https://puppet.com/blog/use-onceover-start-testing-rspec-puppet
 gem 'parallel_tests'
 gem 'ruby-pwsh' # for Powershell parsing
-
-# rspec must be v2 for ruby 1.8.7
-if RUBY_VERSION >= '1.8.7' && RUBY_VERSION < '1.9'
-  gem 'rake', '~> 10.0'
-  gem 'rspec', '~> 2.0'
-else
-  # rubocop requires ruby >= 1.9, but < 2.2.0 need 0.58.0
-  gem 'rubocop', rubocopversion
-  gem 'rubocop-performance'
-  gem 'rubocop-rspec'
-end
