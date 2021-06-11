@@ -2,6 +2,10 @@
 lookup_options:
   osbaseline::classes_contain: {merge: unique}
   osbaseline::classes_include: {merge: unique}
+  osbaseline::realize_accounts_groups: {merge: unique}
+  osbaseline::realize_accounts_users: {merge: unique}
+  osbaseline::accounts::accounts_groups:
+    merge: {strategy: deep, merge_hash_arrays: true}
   osbaseline::accounts::accounts_users:
     merge: {strategy: deep, merge_hash_arrays: true}
   osbaseline::accounts::groups:
@@ -10,23 +14,32 @@ lookup_options:
     merge: {strategy: deep, merge_hash_arrays: true}
   osbaseline::accounts::users:
     merge: {strategy: deep, merge_hash_arrays: true}
+  osbaseline::accounts::virtual_accounts_groups:
+    merge: {strategy: deep, merge_hash_arrays: true}
+  osbaseline::accounts::virtual_accounts_users:
+    merge: {strategy: deep, merge_hash_arrays: true}
   osbaseline::osfamily::windows::registry_keys: {strategy: deep}
   osbaseline::osfamily::windows::registry_values: {strategy: deep}
   osbaseline::osfamily::windows::registryvalues: {strategy: deep}
 
+osbaseline::classes_contain: []
+osbaseline::classes_exclude: []
+osbaseline::classes_include: []
 osbaseline::crons: {}
 osbaseline::execs: {}
 osbaseline::files: {}
-osbaseline::mounts: {}
 osbaseline::git_configs: {}
-osbaseline::classes_contain: []
-osbaseline::classes_include: []
-osbaseline::classes_exclude: []
+osbaseline::mounts: {}
 osbaseline::packages: []
 osbaseline::packages_removed: []
+osbaseline::realize_accounts_groups: []
+osbaseline::realize_accounts_users: []
 
+osbaseline::accounts::accounts_groups: {}
 osbaseline::accounts::accounts_users: {}
 osbaseline::accounts::groups: {}
 osbaseline::accounts::ssh_authorized_keys: {}
 osbaseline::accounts::users: {}
+osbaseline::accounts::virtual_accounts_groups: {}
+osbaseline::accounts::virtual_accounts_users: {}
 ...

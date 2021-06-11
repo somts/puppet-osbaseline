@@ -1,15 +1,17 @@
 # This module sets up supported operating systems to a baseline.
 class osbaseline(
+  Array $classes_contain,
+  Array $classes_exclude,
+  Array $classes_include,
+  Array $packages,
+  Array $packages_removed,
+  Array $realize_accounts_groups,
+  Array $realize_accounts_users,
   Hash $crons,
   Hash $execs,
   Hash $files,
-  Hash $mounts,
   Hash $git_configs,
-  Array $classes_contain,
-  Array $classes_include,
-  Array $classes_exclude,
-  Array $packages,
-  Array $packages_removed,
+  Hash $mounts,
 ) {
   ## CLASS VARIABLES
 
@@ -59,6 +61,11 @@ class osbaseline(
   # We may need to manage users (eg root) ahead of anything else
   Class['osbaseline::accounts'] -> Class['osbaseline::osfamily']
   contain osbaseline::accounts
+
+  # osbaseline::accounts may have defined some virtual users/groups
+  # that we wish to realize(), here.
+  $realize_accounts_groups.each |String $g| { realize(Accounts::Group[$g]) }
+  $realize_accounts_users.each  |String $u| { realize(Accounts::User[$u] ) }
 
   # We may want to manage git variables if we called git
   if defined(Class['git']) {
