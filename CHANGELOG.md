@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 0.1.8
+
+**Features**
+Test AlmaLinux and Rocky
+
+**Bugfixes**
+
+**Known Issues**
+
 ## Release 0.1.7
 
 **Features**

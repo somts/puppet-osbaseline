@@ -1,6 +1,6 @@
 {
   "name": "puppet-osbaseline",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "author": "somts",
   "summary": "Manage Puppet OS Baseline",
   "license": "BSD-2-Clause",
@@ -26,6 +26,8 @@
     { "name": "zleslie-pkgng" }
   ],
   "operatingsystem_support": [
+    { "operatingsystem": "AlmaLinux",
+      "operatingsystemrelease": ["8"] },
     { "operatingsystem": "CentOS",
       "operatingsystemrelease": ["7", "8"] },
     { "operatingsystem": "Darwin",
@@ -38,6 +40,8 @@
       "operatingsystemrelease": ["7", "8"] },
     { "operatingsystem": "RedHat",
       "operatingsystemrelease": ["7", "8"] },
+    { "operatingsystem": "Rocky",
+      "operatingsystemrelease": ["8"] },
     { "operatingsystem": "Ubuntu",
       "operatingsystemrelease": ["16.04", "18.04", "20.04"] },
     { "operatingsystem": "windows",
