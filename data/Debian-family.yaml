@@ -1,4 +1,0 @@
----
-osbaseline::osfamily::osfamily_class: 'osbaseline::osfamily::debian'
-osbaseline::osfamily::debian::minimum_os: '16.04'
-...

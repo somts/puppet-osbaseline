@@ -1,49 +1,46 @@
 # This module sets up supported operating systems to a baseline.
+# It is intended to run as (one of) the first thing in Puppet in 
+# order to do things like ensure certain packages/accounts/etc
+# exists before higher level configuration management is done.
 class osbaseline(
-  Array $classes_contain,
-  Array $classes_exclude,
-  Array $classes_include,
-  Array $packages,
-  Array $packages_removed,
-  Array $realize_accounts_groups,
-  Array $realize_accounts_users,
+  Array[String] $classes_contain,
+  Array[String] $classes_exclude,
+  Array[String] $classes_include,
+  Array[String] $packages,
+  Array[String] $packages_removed,
+  Array[String] $realize_accounts_groups,
+  Array[String] $realize_accounts_users,
   Hash $crons,
   Hash $execs,
   Hash $files,
   Hash $git_configs,
   Hash $mounts,
+  Hash $registry_keys,
+  Hash $registry_values,
+  Hash $registryvalues,
+  Optional[String] $minimum_os,
+  Optional[String] $user_homebrew,
+  Hash $package_epel,
+  Boolean $manage_package_manager,
 ) {
-  ## CLASS VARIABLES
+  ## VALIDATION
 
-  # Some specific roles may need to exclude some otherwise baseline
-  # class, so we remove exclusions before we contain()/include().
-  $_classes_contain = $classes_contain - $classes_exclude
-  $_classes_include = $classes_include - $classes_exclude
+  # Optionally don't support old OSes
+  if $minimum_os and
+  versioncmp($facts['os']['release']['major'], $minimum_os) < 0 {
+    fail("${facts['os']['name']} ${facts['os']['release']['full']} unsupported")
+  }
 
   ## MANAGED RESOURCES
 
-  contain osbaseline::osfamily
+  # We may need to manage users (eg root) ahead of anything else
+  Class['osbaseline::accounts']
+  -> Class['osbaseline::package_manager']
+  -> Class['osbaseline::resources']
 
-  # Conditionally include packages, but make sure our baseline has run.
-  ensure_packages($packages, { require => Class['osbaseline::osfamily']})
-
-  # We need to include or contain our Arrays of classes before creating
-  # any other resources (EG file) in order to be able to depend on
-  # those classes when declaring the resources.
-  $_classes_contain.each |String $c| {
-    Class['osbaseline::osfamily'] -> Class[$c]
-    contain $c
-  }
-  $_classes_include.each |String $c| {
-    Class['osbaseline::osfamily'] -> Class[$c]
-    include $c
-  }
-
-  # Conditionally include resources, but make sure our baseline has run
-  create_resources('cron', $crons,  { require => Class['osbaseline::osfamily']})
-  create_resources('exec', $execs,  { require => Class['osbaseline::osfamily']})
-  create_resources('file', $files,  { require => Class['osbaseline::osfamily']})
-  create_resources('mount', $mounts,{ require => Class['osbaseline::osfamily']})
+  contain 'osbaseline::accounts'
+  contain 'osbaseline::package_manager'
+  contain 'osbaseline::resources'
 
   # We need the ability to remove packages, and this should be done
   # before any specific osfamily normalization and we intentionally
@@ -54,24 +51,7 @@ class osbaseline(
   if !empty($packages_removed) {
     package { $packages_removed :
       ensure => 'absent',
-      before => Class['osbaseline::osfamily'],
+      before => Class['osbaseline::package_manager'],
     }
-  }
-
-  # We may need to manage users (eg root) ahead of anything else
-  Class['osbaseline::accounts'] -> Class['osbaseline::osfamily']
-  contain osbaseline::accounts
-
-  # osbaseline::accounts may have defined some virtual users/groups
-  # that we wish to realize(), here.
-  $realize_accounts_groups.each |String $g| { realize(Accounts::Group[$g]) }
-  $realize_accounts_users.each  |String $u| { realize(Accounts::User[$u] ) }
-
-  # We may want to manage git variables if we called git
-  if defined(Class['git']) {
-    create_resources('git::config', $git_configs, {
-      scope   => 'system',
-      require => Class['osbaseline::osfamily'],
-    })
   }
 }

@@ -1,0 +1,4 @@
+# Ubuntu
+---
+osbaseline::minimum_os: '16.04'
+...

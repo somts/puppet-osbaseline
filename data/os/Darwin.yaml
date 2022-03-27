@@ -1,0 +1,8 @@
+---
+osbaseline::minimum_os: '19'
+osbaseline::packages:
+  - 'curl'
+  - 'iperf3'
+  - 'wget'
+  - 'screen'
+...

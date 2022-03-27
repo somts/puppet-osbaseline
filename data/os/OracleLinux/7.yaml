@@ -1,0 +1,7 @@
+# OracleLinux - merged with RedHat.yaml
+---
+osbaseline::package_epel:
+  'epel-release':
+    ensure: 'present'
+    name: 'oracle-epel-release-el7'
+...

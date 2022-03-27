@@ -1,0 +1,22 @@
+---
+osbaseline::classes_contain:
+  - 'archive'
+osbaseline::classes_include:
+  - 'chocolatey'
+  - 'puppet_agent'
+osbaseline::minimum_os: '10'
+osbaseline::packages:
+  - 'curl'
+  - 'filezilla'
+  - 'iperf3'
+  - 'lftp'
+  - 'netstat-agent'
+  - 'notepadplusplus'
+  - 'procexp'
+  - 'putty'
+  - 'tartool'
+  - 'teraterm'
+  - 'wget'
+  - 'winscp'
+  - 'wireshark'
+...

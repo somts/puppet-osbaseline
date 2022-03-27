@@ -1,9 +1,8 @@
 ---
 osbaseline::classes_include:
-  - git
-  - ntp
-  - openvmtools
-  - rsync
+  - 'git'
+  - 'ntp'
+  - 'rsync'
 
 # Per www.freebsd.org/cgi/man.cgi?query=freebsd-update&sektion=8
 # keep our system up-to-date, once a month. This doesn't install
@@ -41,9 +40,12 @@ osbaseline::files:
   '/bin/bash':
     ensure: link
     target: /usr/local/bin/bash
-    # Not yet sure why this does not work
-    #require: 'Package[shells/bash]'
+  # Link /usr/local/bin/zsh to /bin/zsh for the sake of scripts.
+  '/bin/zsh':
+    ensure: link
+    target: /usr/local/bin/zsh
 
+osbaseline::minimum_os: '12'
 osbaseline::mounts:
   # The GNU bash requires fdescfs (file-descriptor file system)
   # mounted on /dev/fd. For details, see
@@ -61,8 +63,8 @@ osbaseline::mounts:
     #require: 'Package[shells/bash]'
 
 osbaseline::packages:
-  - shells/bash
-  - shells/bash-completion
+  - bash
+  - bash-completion
   - curl
   - iperf
   - screen
@@ -76,10 +78,7 @@ osbaseline::packages:
   - unzip
   - wget
   - zip
-
-osbaseline::osfamily::osfamily_class: 'osbaseline::osfamily::freebsd'
-
-osbaseline::osfamily::freebsd::minimum_os: '11'
+  - zsh
 
 osbaseline::virtual::vmtools_pkg_name: open-vm-tools-nox11
 osbaseline::virtual::vmtools_svc_name: vmware-guestd

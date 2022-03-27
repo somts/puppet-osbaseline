@@ -1,0 +1,26 @@
+---
+osbaseline::classes_include:
+  - 'archive'
+  - 'git'
+  - 'logrotate'
+  - 'ntp'
+  - 'puppet_agent'
+  - 'rsync'
+osbaseline::minimum_os: '9'
+osbaseline::packages:
+  - 'bash'
+  - 'bzip2'
+  - 'curl'
+  - 'htop'
+  - 'iftop'
+  - 'iperf3'
+  - 'lftp'
+  - 'p7zip'
+  - 'screen'
+  - 'tcpdump'
+  - 'traceroute'
+  - 'unzip'
+  - 'wget'
+  - 'zip'
+  - 'zsh'
+...

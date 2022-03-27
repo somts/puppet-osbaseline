@@ -34,10 +34,17 @@ osbaseline::execs: {}
 osbaseline::files: {}
 osbaseline::git_configs: {}
 osbaseline::mounts: {}
+osbaseline::minimum_os:
+osbaseline::registry_keys: {}
+osbaseline::registry_values: {}
+osbaseline::registryvalues: {}
 osbaseline::packages: []
 osbaseline::packages_removed: []
 osbaseline::realize_accounts_groups: []
 osbaseline::realize_accounts_users: []
+osbaseline::user_homebrew: sys
+osbaseline::package_epel: {}
+osbaseline::manage_package_manager: true
 
 osbaseline::accounts::accounts_groups: {}
 osbaseline::accounts::accounts_users: {}
