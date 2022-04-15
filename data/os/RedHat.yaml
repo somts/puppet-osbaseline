@@ -6,7 +6,6 @@ osbaseline::classes_include:
   - 'archive'
   - 'git'
   - 'logrotate'
-  - 'ntp'
   - 'puppet_agent'
   - 'rsync'
 
